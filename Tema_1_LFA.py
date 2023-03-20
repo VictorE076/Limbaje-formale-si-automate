@@ -13,7 +13,7 @@ def afisare_Drum(dr, s):
     print("q(" + str(s) + ")" + "\n")
 
 #Main-ul:
-fisier_ales = "Tema_1_LFA_in.txt"
+fisier_ales = "Prezentare_in.txt"
 f1 = open(fisier_ales, "r")
 Q = int(f1.readline()) #Citim numarul total de stari.
 F = set(int(F_i) for F_i in f1.readline().split()) #Citim un set cu toate starile finale(acceptoare).
@@ -34,7 +34,7 @@ f1.close()
 
 #afisare_Delta(Delta) #afisam automatul nostru(AFD).
 
-word_file = "Tema_1_LFA_in_cuvant.txt"
+word_file = "Prezentare_in_cuv.txt"
 f2 = open(word_file, "r")
 cuv = f2.readline().strip() #Citim cuvantul si mai jos analizam daca va fi acceptat de AFD-ul nostru sau nu.
 f2.close()
@@ -53,12 +53,19 @@ while ind < len(cuv) and flag:
         stare = Delta[stare][caracter]
     ind += 1
 
-if flag == False or stare not in F:
+    ## Verificare in cazul cuvantului "vid"!
+if cuv == "vid" and 0 in F:
+    print("Cuvantul vid este acceptat!")
+elif cuv == "vid" and 0 not in F:
+    print("Cuvantul vid NU este acceptat!")
+    ##
+elif flag == False or stare not in F:
     print("Neacceptat!")
 else:
     print("Acceptat!")
     print("Drumul folosit este:")
     afisare_Drum(Drum, stare)
+
     
 
 
